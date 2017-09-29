@@ -1,6 +1,16 @@
 {
     "docs": [
         {
+            "location": "/",
+            "text": "chaostoolkit documentation\n\u00b6\n\n\nchaostoolkit allows you to run stressful experiments against your production\nsystem and report the deviation between the expected results and the actual\nstate of the system.",
+            "title": "Introduction"
+        },
+        {
+            "location": "/#chaostoolkit-documentation",
+            "text": "chaostoolkit allows you to run stressful experiments against your production\nsystem and report the deviation between the expected results and the actual\nstate of the system.",
+            "title": "chaostoolkit documentation"
+        },
+        {
             "location": "/overview/concepts/",
             "text": "",
             "title": "Concepts"
