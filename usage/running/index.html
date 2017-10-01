@@ -398,11 +398,21 @@ declared. This is done as follows:</p>
 <div class="codehilite"><pre><span></span>(venv) $ chaos run my-plan.json
 </pre></div>
 
-<p>You caninitially perform a dry run:</p>
+<p>You can initially perform a dry run:</p>
 <div class="codehilite"><pre><span></span>(venv) $ chaos run --dry my-plan.json
 </pre></div>
 
 <p><code>chaostoolkit</code> will log all the steps it follows from your plan.</p>
+<p>If you run the command from a container, you may use a command such as:</p>
+<div class="codehilite"><pre><span></span>$ docker run --rm -it \
+    -v $HOME/.kube:/root/.kube \
+    -v $HOME/.minikube:$HOME/.minikube \
+    -v `pwd`:/tmp/chaos \
+    chaostoolkit/chaostoolkit run /tmp/chaos/my-plan.json
+</pre></div>
+
+<p>This command snippet shows how you would share your <a href="https://kubernetes.io/">Kubernetes</a>
+ and <a href="https://github.com/kubernetes/minikube">minikube</a> configurations if your experiment targets Kubernetes.</p>
                 
                   
                 
