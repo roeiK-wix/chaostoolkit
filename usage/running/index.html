@@ -405,6 +405,7 @@ declared. This is done as follows:</p>
 <p><code>chaostoolkit</code> will log all the steps it follows from your plan.</p>
 <p>If you run the command from a container, you may use a command such as:</p>
 <div class="codehilite"><pre><span></span>$ docker run --rm -it \
+    --user `id -u` \
     -v $HOME/.kube:/root/.kube \
     -v $HOME/.minikube:$HOME/.minikube \
     -v `pwd`:/tmp/chaos \
