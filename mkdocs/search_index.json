@@ -2,12 +2,12 @@
     "docs": [
         {
             "location": "/",
-            "text": "Welcome to the Chaos Toolkit Documentation\n\u00b6\n\n\nThe Chaos Toolkit is a free, open source project that enables you to create and apply Chaos Experiments to various types of infrastructure, platforms and applications.",
+            "text": "Welcome to the Chaos Toolkit Documentation\n\u00b6\n\n\nThe Chaos Toolkit is a free, open source project that enables you to create and\napply Chaos Experiments to various types of infrastructure, platforms and\napplications.\n\n\nRunning experiments is as simple as:\n\n\n$ chaos run an-experiment.json\n\n\n\n\nThis takes the description of your experiment, runs it and ourput a reports\nto share with your team.",
             "title": "Introduction"
         },
         {
             "location": "/#welcome-to-the-chaos-toolkit-documentation",
-            "text": "The Chaos Toolkit is a free, open source project that enables you to create and apply Chaos Experiments to various types of infrastructure, platforms and applications.",
+            "text": "The Chaos Toolkit is a free, open source project that enables you to create and\napply Chaos Experiments to various types of infrastructure, platforms and\napplications.  Running experiments is as simple as:  $ chaos run an-experiment.json  This takes the description of your experiment, runs it and ourput a reports\nto share with your team.",
             "title": "Welcome to the Chaos Toolkit Documentation"
         },
         {
