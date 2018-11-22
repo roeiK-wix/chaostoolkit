@@ -8,6 +8,11 @@
 
 - strip command name before sending it to check newer version as sometimes
   we get a tabulation character in there
+- add control support [#84][84]
+- add a `--no-controls` flag to the ̀`run` command to disable controls from
+  being loaded and applied duing execution
+
+[84]: https://github.com/chaostoolkit/chaostoolkit/issues/84
 
 ## [0.16.0][] - 2018-09-19
 

@@ -9,6 +9,8 @@ import sys
 from typing import List
 import uuid
 
+from chaoslib.control import load_control_plugins, populate_controls, \
+    remove_all_controls, unload_control_plugins
 from chaoslib.exceptions import ChaosException, DiscoveryFailed, InvalidSource
 from chaoslib.discovery import discover as disco
 from chaoslib.experiment import ensure_experiment_is_valid, run_experiment
@@ -110,13 +112,14 @@ def cli(ctx: click.Context, verbose: bool = False,
               help='Path where to save the journal from the execution.')
 @click.option('--dry', is_flag=True,
               help='Run the experiment without executing activities.')
+@click.option('--no-controls', is_flag=True, help='Do not apply controls.')
 @click.option('--no-validation', is_flag=True,
               help='Do not validate the experiment before running.')
 @click.argument('source')
 @click.pass_context
 def run(ctx: click.Context, source: str, journal_path: str = "./journal.json",
         dry: bool = False, no_validation: bool = False,
-        fail_fast: bool = True) -> Journal:
+        fail_fast: bool = True, no_controls: bool = False) -> Journal:
     """Run the experiment loaded from SOURCE, either a local file or a
        HTTP resource."""
     settings = load_settings(ctx.obj["settings_path"])
@@ -126,6 +129,13 @@ def run(ctx: click.Context, source: str, journal_path: str = "./journal.json",
         logger.error(str(x))
         logger.debug(x)
         sys.exit(1)
+
+    if no_controls:
+        logger.debug("Do not load control plugins per CLI request")
+        remove_all_controls(experiment)
+    else:
+        load_control_plugins(settings)
+        populate_controls(experiment)
 
     notify(settings, RunFlowEvent.RunStarted, experiment)
 
@@ -140,6 +150,9 @@ def run(ctx: click.Context, source: str, journal_path: str = "./journal.json",
     experiment["dry"] = dry
 
     journal = run_experiment(experiment)
+
+    if not no_controls:
+        unload_control_plugins()
 
     with io.open(journal_path, "w") as r:
         json.dump(journal, r, indent=2, ensure_ascii=False, default=encoder)
