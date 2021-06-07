@@ -102,6 +102,8 @@ def validate_vars(ctx: click.Context, param: click.Option,
               help='Path where to save the journal from the execution.')
 @click.option('--dry', is_flag=True,
               help='Run the experiment without executing activities.')
+@click.option('--actionless', is_flag=True,
+              help='Run the experiment without executing actions activities.')
 @click.option('--no-validation', is_flag=True,
               help='Do not validate the experiment before running.')
 @click.option('--no-verify-tls', is_flag=True,
@@ -141,7 +143,7 @@ def validate_vars(ctx: click.Context, param: click.Option,
 @click.argument('source')
 @click.pass_context
 def run(ctx: click.Context, source: str, journal_path: str = "./journal.json",
-        dry: bool = False, no_validation: bool = False,
+        dry: bool = False, actionless: bool = False, no_validation: bool = False,
         no_exit: bool = False, no_verify_tls: bool = False,
         rollback_strategy: str = "default",
         var: Dict[str, Any] = None, var_file: List[str] = None,
@@ -176,6 +178,7 @@ def run(ctx: click.Context, source: str, journal_path: str = "./journal.json",
             ctx.exit(1)
 
     experiment["dry"] = dry
+    experiment["actionless"] = actionless
     settings.setdefault(
         "runtime", {}).setdefault("rollbacks", {}).setdefault(
             "strategy", rollback_strategy)
