@@ -1,8 +1,86 @@
 # Changelog
-
 ## [Unreleased][]
 
-[Unreleased]: https://github.com/chaostoolkit/chaostoolkit/compare/1.9.1...HEAD
+### Added 
+
+* The new dry run with 4 options:
+  * --dry=activities run all activities as dry run. (same as the old flag)
+  * --dry=actions run all actions as dry run.
+  * --dry=probes run all probes as dry run.
+  * --dry=pause run all activities with no pausing.
+* Added tests
+
+[Unreleased]: https://github.com/chaostoolkit/chaostoolkit/compare/1.9.6...HEAD
+
+### Added
+
+* Added `.github/workflows/check_pr.yaml` which checks if a PR has modified the
+CHANGELOG.md and if it changed/added tests
+* Moved `pip install --upgrade pip setuptools wheel` step from `install-dev` to
+`install` in the Makefile
+
+## [1.9.6][] - 2021-08-26
+
+[1.9.6]: https://github.com/chaostoolkit/chaostoolkit/compare/1.9.5...1.9.6
+
+### Fixed
+
+* Actually update the version of the lib on release
+
+## [1.9.5][] - 2021-08-26
+
+[1.9.5]: https://github.com/chaostoolkit/chaostoolkit/compare/1.9.4...1.9.5
+
+### Fixed
+
+* Fixed version extracting in `setup.py`
+
+## [1.9.4][] - 2021-08-26
+
+[1.9.4]: https://github.com/chaostoolkit/chaostoolkit/compare/1.9.3...1.9.4
+
+### Changed
+
+* Bump version of `chaostoolkit-lib` to `~=1.21`
+* Switched from pycodestyle/pylama to `black`, `flake8`, `isort`
+* Update CI builds to build, lint, and test
+* Applied `black`, `flake8`, and `isort` across the codebase
+* Ran `pyupgrade --py36-plus`
+
+### Changed
+
+* Bump version of `chaostoolkit-lib` to `~=1.21`
+* Switched from pycodestyle/pylama to `black`, `flake8`, `isort`
+* Update CI builds to build, lint, and test
+* Applied `black`, `flake8`, and `isort` across the codebase
+* Ran `pyupgrade --py36-plus`
+
+## [1.9.3][] - 2021-08-24
+
+[1.9.3]: https://github.com/chaostoolkit/chaostoolkit/compare/1.9.2...1.9.3
+
+### Changed
+
+* Fixed typo in `chaos init` prompt from `reognised` to `recognised`
+* Changed `--hypothesis-strategy` method `continously` to `continuously`
+* Changed `Schedule` parameter from `continous_hypothesis_frequency` to
+  `continuous_hypothesis_frequency`
+* Changed other minor typos
+
+## [1.9.2][] - 2021-08-16
+
+[1.9.2]: https://github.com/chaostoolkit/chaostoolkit/compare/1.9.1...1.9.2
+
+### Added
+
+* Add `.github/workflows/close_stale_issues.yaml` to mark Issues stale after `365` days
+  Also closes them after `7` days of being `Stale`
+
+### Changed
+
+* Dockerfile now requires `--build-arg ctkversion=<version>` when building
+* `.github/workflows/release.yaml` now uses a retry step for Docker builds to ensure we don't
+  lose a race condition between PyPi and our build step
 
 ## [1.9.1][] - 2021-05-31
 
@@ -85,7 +163,7 @@
 * Add the `--fail-fast` flag to the `run` command. This flag is
   only meaningful with `--hypothesis-strategy=during-method-only|continously`.
   If set, this indicates the experiment should be marked as deviating
-  immediatly. When not provided, the hypothesis runs until the end of the
+  immediately. When not provided, the hypothesis runs until the end of the
   method without terminating the experiment
 
 ### Changed
@@ -231,7 +309,7 @@
 - Allow to declare and load controls from settings so they are globally
   applied to all your runs [chaostoolkit-lib#99][99]
 
-  In your settings file, at `~/.chaostooltkit-lib/settings.yaml` add, for
+  In your settings file, at `~/.chaostoolkit-lib/settings.yaml` add, for
   instance:
 
   ```yaml
@@ -406,7 +484,7 @@
 - You can bypass argument in the init command via empty string [#29][29]
 - Allow to create steady-state hypothesis from init command [#28][28]
 - Allow to set rollbacks from init command [#30][30]
-- Pass command executed to checker for compatbility [#36][36]
+- Pass command executed to checker for compatability [#36][36]
 - Better logging of failed discovery [chaostoolkit-lib#29][29lib]
 - Depending now on chaostoolkit-lib 0.14.0
 
