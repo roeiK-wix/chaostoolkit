@@ -132,20 +132,6 @@ def test_dry(log_file):
     assert 'Dry mode enabled' in log
 
 
-def test_actionless(log_file):
-    runner = CliRunner()
-    exp_path = os.path.join(
-        os.path.dirname(__file__), 'fixtures', 'check-file-exists.json')
-    result = runner.invoke(cli, [
-        '--settings', empty_settings_path,
-        '--log-file', log_file.name, 'run', '--actionless', exp_path])
-    assert result.exit_code == 0
-    assert result.exception is None
-
-    log_file.seek(0)
-    log = log_file.read().decode('utf-8')
-    assert 'Actionless mode enabled' in log
-
 
 @patch('chaostoolkit.cli.notify', spec=True)
 def test_notify_run_complete(notify, log_file):
