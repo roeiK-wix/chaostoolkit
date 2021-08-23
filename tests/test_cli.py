@@ -132,7 +132,6 @@ def test_dry(log_file):
     assert 'Dry mode enabled' in log
 
 
-
 @patch('chaostoolkit.cli.notify', spec=True)
 def test_notify_run_complete(notify, log_file):
     testdir = os.path.normpath(os.path.join(
