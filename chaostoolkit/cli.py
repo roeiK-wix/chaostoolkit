@@ -18,7 +18,7 @@ from chaoslib.notification import notify, DiscoverFlowEvent, InitFlowEvent, \
 from chaoslib.settings import load_settings, locate_settings_entry, \
     save_settings, CHAOSTOOLKIT_CONFIG_PATH
 from chaoslib.types import Activity, Discovery, Experiment, Journal, \
-    Schedule, Strategy
+    Schedule, Strategy,Dry
 import click
 from click_plugins import with_plugins
 try:
@@ -103,7 +103,7 @@ def validate_vars(ctx: click.Context, param: click.Option,
 @click.option('--dry', type=click.Choice([
                   "no-dry", "probes", "actions", "activities",
                   "pause"
-              ]), show_default=False, default="no-dry",
+              ]), show_default=False, default=Dry.NO_DRY.value,
               help='Run the experiment without executing the chosen strategy.')
 @click.option('--no-validation', is_flag=True,
               help='Do not validate the experiment before running.')
@@ -144,7 +144,7 @@ def validate_vars(ctx: click.Context, param: click.Option,
 @click.argument('source')
 @click.pass_context
 def run(ctx: click.Context, source: str, journal_path: str = "./journal.json",
-        dry: str = "no-dry", no_validation: bool = False,
+         dry: str = Dry.NO_DRY.value, no_validation: bool = False,
         no_exit: bool = False, no_verify_tls: bool = False,
         rollback_strategy: str = "default",
         var: Dict[str, Any] = None, var_file: List[str] = None,
@@ -178,7 +178,7 @@ def run(ctx: click.Context, source: str, journal_path: str = "./journal.json",
             logger.debug(x)
             ctx.exit(1)
 
-    experiment["dry"] = dry
+    experiment["dry"] = Dry.from_string(dry)
     settings.setdefault(
         "runtime", {}).setdefault("rollbacks", {}).setdefault(
             "strategy", rollback_strategy)
