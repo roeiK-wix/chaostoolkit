@@ -2,7 +2,7 @@
 import io
 import json
 import os
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 import uuid
 
 from chaoslib import __version__ as chaoslib_version, merge_vars, convert_vars
@@ -102,9 +102,9 @@ def validate_vars(ctx: click.Context, param: click.Option,
 @click.option('--journal-path', default="./journal.json",
               help='Path where to save the journal from the execution.')
 @click.option('--dry', type=click.Choice([
-                  "no-dry", "probes", "actions", "activities",
-                  "pause"
-              ]), show_default=False, default=Dry.NO_DRY.value,
+                "probes", "actions", "activities",
+                "pause"
+              ]), show_default=False,
               help='Run the experiment without executing the chosen strategy.')
 @click.option('--no-validation', is_flag=True,
               help='Do not validate the experiment before running.')
@@ -145,7 +145,7 @@ def validate_vars(ctx: click.Context, param: click.Option,
 @click.argument('source')
 @click.pass_context
 def run(ctx: click.Context, source: str, journal_path: str = "./journal.json",
-         dry: str = Dry.NO_DRY.value, no_validation: bool = False,
+         dry: Optional[str] = None, no_validation: bool = False,
         no_exit: bool = False, no_verify_tls: bool = False,
         rollback_strategy: str = "default",
         var: Dict[str, Any] = None, var_file: List[str] = None,
