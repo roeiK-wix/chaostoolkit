@@ -49,6 +49,7 @@ CHANGELOG.md and if it changed/added tests
 
 ### Changed
 
+* Bump version of `chaostoolkit-lib` to `~=1.21`
 * Switched from pycodestyle/pylama to `black`, `flake8`, `isort`
 * Update CI builds to build, lint, and test
 
