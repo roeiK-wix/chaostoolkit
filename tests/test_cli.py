@@ -709,3 +709,6 @@ def test_remove_settings_entry():
             ],
         )
         assert result.exit_code == 1
+
+if __name__ == "__main__":
+    test_notify_run_complete(log_file=tempfile.NamedTemporaryFile())
