@@ -52,6 +52,7 @@ CHANGELOG.md and if it changed/added tests
 * Bump version of `chaostoolkit-lib` to `~=1.21`
 * Switched from pycodestyle/pylama to `black`, `flake8`, `isort`
 * Update CI builds to build, lint, and test
+* Applied `black`, `flake8`, and `isort` across the codebase
 
 ## [1.9.3][] - 2021-08-24
 
