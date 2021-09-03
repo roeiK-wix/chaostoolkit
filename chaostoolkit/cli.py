@@ -221,7 +221,8 @@ def run(ctx: click.Context, source: str, journal_path: str = "./journal.json",
     )
     has_deviated = journal.get("deviated", False)
     has_failed = journal["status"] != "completed"
-
+    if "dry" in journal["experiment"]:
+        journal["experiment"]["dry"] = dry.value if dry else None
     with open(journal_path, "w") as r:
         json.dump(journal, r, indent=2, ensure_ascii=False, default=encoder)
 
