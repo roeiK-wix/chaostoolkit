@@ -17,8 +17,7 @@ from chaoslib.notification import (
     DiscoverFlowEvent,
     InitFlowEvent,
     RunFlowEvent,
-    ValidateFlowEvent,
-    notify,
+    ValidateFlowEvent
 )
 from chaoslib.settings import (
     CHAOSTOOLKIT_CONFIG_PATH,
@@ -26,7 +25,14 @@ from chaoslib.settings import (
     locate_settings_entry,
     save_settings,
 )
-from chaoslib.types import Activity, Discovery, Experiment, Journal, Schedule,Dry
+from chaoslib.types import (
+    Activity,
+    Discovery,
+    Experiment,
+    Journal,
+    Schedule,
+    Dry
+)
 from click_plugins import with_plugins
 
 try:
