@@ -44,7 +44,10 @@ import yaml
 from logzero import logger
 
 from chaostoolkit import __version__, encoder
-from chaostoolkit.check import check_hypothesis_strategy_spelling, check_newer_version
+from chaostoolkit.check import (
+    check_hypothesis_strategy_spelling,
+    check_newer_version
+     )
 from chaostoolkit.logging import configure_logger
 
 __all__ = ["cli"]
