@@ -144,7 +144,6 @@ def test_dry_activities(log_file):
     log = log_file.read().decode("utf-8")
     assert "Dry mode enabled" in log
 
-
 def test_dry_probes(log_file):
     runner = CliRunner()
     exp_path = os.path.join(

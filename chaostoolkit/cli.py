@@ -2,7 +2,6 @@ import json
 import os
 from typing import Any, Dict, List, Optional
 import uuid
-from typing import Any, Dict, List
 
 import click
 from chaoslib import __version__ as chaoslib_version
@@ -14,13 +13,20 @@ from chaoslib.exceptions import ChaosException, DiscoveryFailed, InvalidSource
 from chaoslib.experiment import ensure_experiment_is_valid, run_experiment
 from chaoslib.info import list_extensions
 from chaoslib.loader import load_experiment
-from chaoslib.notification import notify, DiscoverFlowEvent, InitFlowEvent, \
-    RunFlowEvent, ValidateFlowEvent
-from chaoslib.settings import load_settings, locate_settings_entry, \
-    save_settings, CHAOSTOOLKIT_CONFIG_PATH
-from chaoslib.types import Activity, Discovery, Experiment, Journal, \
-    Schedule, Strategy,Dry
-import click
+from chaoslib.notification import (
+    DiscoverFlowEvent,
+    InitFlowEvent,
+    RunFlowEvent,
+    ValidateFlowEvent,
+    notify,
+)
+from chaoslib.settings import (
+    CHAOSTOOLKIT_CONFIG_PATH,
+    load_settings,
+    locate_settings_entry,
+    save_settings,
+)
+from chaoslib.types import Activity, Discovery, Experiment, Journal, Schedule,Dry
 from click_plugins import with_plugins
 
 try:
